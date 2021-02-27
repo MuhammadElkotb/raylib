@@ -10,7 +10,7 @@ int main()
 	InitWindow(WIDTH, HEIGHT, "DevWINDOW");
 	SetTargetFPS(60);
 
-	Texture2D scarfy =LoadTexture("C:\\Users\\Muham\\Desktop\\Prject\\RayLib-tut-2\\scarfy.png");
+	Texture2D scarfy =LoadTexture("resources/scarfy.png");
 	
 	while (!WindowShouldClose()) {
 		BeginDrawing();
