@@ -1,0 +1,83 @@
+#include <raylib.h>
+#include <stdio.h>
+
+const int WIDTH = 1280;
+const int HEIGHT = 720;
+
+int main()
+{
+
+	InitWindow(WIDTH, HEIGHT, "DevWINDOW");
+	SetTargetFPS(60);
+
+	Texture2D scarfy =LoadTexture("C:\\Users\\Muham\\Desktop\\Prject\\RayLib-tut-2\\scarfy.png");
+	
+	while (!WindowShouldClose()) {
+		BeginDrawing();
+		static int ctr = 0;
+		float framewidth = (float)(scarfy.width / 6);
+		static float frame = 0;
+		static float timer = 0.0f;
+		static float timer1 = 0.0f;
+		static float xax = 0;
+		static float yax = 360;
+		
+		timer += GetFrameTime();
+		timer1 += GetFrameTime();
+		
+		//printf("%f\n", timer);
+
+		if (IsKeyDown(KEY_RIGHT)) {
+			
+			if (timer > 0.2f) {
+				timer = 0;
+				frame += scarfy.width / 6;
+				
+			}
+			xax += 3;
+			
+		}
+
+		if (xax > (float)1280 + framewidth){
+			xax = 0;
+			
+			
+		}
+		if (frame == scarfy.width) {
+			frame = 0;
+		}	
+		
+		Rectangle rect = { frame, 0, framewidth, (float)scarfy.height };
+		Vector2 vector = { xax, yax };
+		
+		
+		ClearBackground(RAYWHITE);
+	
+			if (yax == 360 && IsKeyDown(KEY_UP)) {
+				if (timer1 > 0.2f) {
+					timer1 = 0;
+					yax -= 80;
+
+				}
+				
+			}
+		
+			if ((yax!=360|| ((IsKeyPressed(KEY_UP)) && yax!=360))){
+				if (timer1 > 0.2f) {
+					timer1 = 0;
+					yax += 80;
+				}
+				
+			}
+			
+				DrawTextureRec(
+					scarfy,
+					rect,
+					vector,
+					RAYWHITE);
+		
+		EndDrawing();
+
+	}
+}
+
